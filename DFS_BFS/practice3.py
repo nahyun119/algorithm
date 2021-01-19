@@ -1,3 +1,7 @@
+# 통과는 했지만 이미 queue에 들어가서 나온 데이터는 이미 상하좌우로 이동했으므로
+# 이동할 수 없기 때문에 굳이 queue에 다시 넣을 필요가 없다.
+# 그냥 이동해서 나온 애들만 넣으면 될 것 같다. -> practice3-1.py
+
 from collections import deque
 import sys
 def main():

@@ -29,34 +29,6 @@ def is_correct(p):
     else : # stack이 비면 올바른 문자열 
         return True
 
-def check(p):
-    if is_correct(p):
-        return p
-    if not p:
-        return ''
-    
-    index = is_balanced(p)
-    if index == -1:
-        u = p
-        v = ''
-    else:
-        u = p[: index + 1]
-        v = p[index + 1:]
-
-    if is_correct(u): # 올바른 문자열인 경우 v부터 시작 
-        return u + check(v)
-    else: # 올바른 문자열이 아닌 경우 
-        new_v = check(v)
-        new = '(' + new_v + ')'
-        new_u = ''
-        for value in range(1, len(u) - 1):
-            if u[value] == '(':
-                new_u += ')'
-            else:
-                new_u += '('
-        new = new + new_u
-        return new
-
 def solution(p):
     answer = ''
     
@@ -72,9 +44,9 @@ def solution(p):
     v = p[index + 1:]
 
     if is_correct(u): # 올바른 문자열인 경우 v부터 시작 
-        return u + check(v)
+        return u + solution(v)
     else: # 올바른 문자열이 아닌 경우 
-        new_v = check(v)
+        new_v = solution(v)
         new = '(' + new_v + ')'
         new_u = ''
         for value in range(1, len(u) - 1):
