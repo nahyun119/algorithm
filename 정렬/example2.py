@@ -9,7 +9,7 @@ def main():
         name, score = map(str, input().split())
         students.append((name, int(score)))
 
-    #students = sorted(students, key = get_score)
+    # students = sorted(students, key = get_score)
     # lambda를 이용한 경우
     students = sorted(students, key = lambda students: students[1])
 
