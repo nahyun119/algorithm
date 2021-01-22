@@ -1,4 +1,6 @@
 # 항상 작은 두 묶음을 더하는 것이 좋다. 
+# 이렇게 하면 시간초과가 발생한다. 
+# 그러므로 우선순위 큐를 사용하여 항상 순서대로 정렬되도록 하는 것이 좋다 -> practice4-1.py
 
 def main():
     N = int(input())
@@ -26,7 +28,7 @@ def main():
         total_list += number_list[2:]
 
         number_list = sorted(total_list)
-        
+
 
     print(number_list[0])
  

@@ -8,7 +8,6 @@ def main():
 
     for i in range(N):
         heapq.heappush(number_list, int(input()))
-
     answer = 0 # 두 묶음씩 몇번을 비교했는지 총 비교 횟수 
 
     while len(number_list) > 1:
