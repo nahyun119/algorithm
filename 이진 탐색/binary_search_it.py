@@ -1,27 +1,37 @@
-# 반복문을 이용한 binary search
-def main():
-    N, target = list(map(int, input().split()))
+# 값이 엄청 크므로 이진탐색 이용!!
 
-    array = list(map(int, input().split()))
-
+def solution(stones, k):
+    answer = 0
+    
     start = 0
-    end = N - 1
+    end = 200000000
 
+    
+    result = []
     while start <= end:
         mid = (start + end) // 2
-
-        if array[mid] == target:
-            print(mid + 1)
-            return  
-        if array[mid] < target: # target이 더 큰 경우 start 변경
-            start = mid + 1
-        if array[mid] > target: # target이 더 작은 경우 end 변경 
-            end = mid - 1
+        temp = [x - mid for x in stones]
         
-    print("결과가 없다.")
-    return 
-
-
-
-if __name__ ==  "__main__":
-    main() 
+        count = 0
+        is_impo = True
+        
+        for value in temp:
+            
+            if value <= 0:
+                count += 1
+                if count >= k:
+                    is_impo = False
+                    break 
+            else:
+                count = 0
+                
+        #print(mid, is_impo, temp)                 
+        if not is_impo:
+            end = mid - 1
+        else:
+            result.append(mid + 1)
+            start = mid + 1
+            
+    #print(result)   -> 계속 1씩 덜 들어가서 확인해보니까 mid랑 뭔가 안맞았다. 그래서 mid + 1을 결과에 넣었더니 성공     
+    answer = max(result)
+    return answer
