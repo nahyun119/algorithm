@@ -2,6 +2,7 @@
 
 from collections import deque
 import sys
+import copy
 
 sys.setrecursionlimit(10**6)
 
@@ -29,7 +30,8 @@ def get_start(w, h, board, step): # 시작 위치 가져오는 함수
     for i in range(w):
         for j in range(h):
             if board[j][i] != 0:
-                q.append((j, i, step, board[:]))
+                b = copy.deepcopy(board)
+                q.append((j, i, step, b))
                 break 
     
     return q
@@ -70,17 +72,16 @@ for t in range(T):
         x, y, step, graph = start.popleft() 
         #print(x, y, step, graph)
         if step == n:
-            # total = 0
-            # for i in range(h):
-            #     print(graph[i])
-            #     total += w - graph[i].count(0)
-            # if total < min_value:
-            #     min_value = total
+            total = 0
+            print(x, y,graph)
+            for i in range(h):
+                #print(graph[i])
+                total += w - graph[i].count(0)
+            if total < min_value:
+                min_value = total
             continue
         dfs(x, y, graph[x][y] - 1, graph, w, h)
-        print(x, y, step)
-        for i in range(h):
-            print(graph[i])
+       #print(x, y, step, graph)
         new_board = get_board(graph, w, h)
         start.extend(get_start(w, h, new_board, step + 1))
 
