@@ -1,3 +1,5 @@
+# 시간이 너무 오래걸려서 약간 규칙을 찾아서 해결 -> 1493-1.py
+
 T = int(input())
 for t in range(T):
     p, g = map(int, input().split())
