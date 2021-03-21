@@ -56,22 +56,34 @@ def dfs(board, index):
     x = cctv[index][0]
     y = cctv[index][1]
     number = cctv[index][2]
-    queue = deque()
     for direction in cctv_direc[number]:
+
         for i in direction:
-            queue.append((x, y, i))
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-        while queue:
-            cx, cy, direc = queue.popleft()
+            while nx >= 0 and nx < n and ny >= 0 and ny < m:
+                if board[nx][ny] == 6:
+                    break # 장애물
+                if board[nx][ny] == 0: # 감시할 수 있는 곳 
+                    board[nx][ny] = -1
+                
+                nx += dx[i]
+                ny += dy[i]
 
-            nx = cx + dx[direc]
-            ny = cy + dy[direc]
+        #     queue.append((x, y, i))
 
-            if nx >= 0 and nx < n and ny >= 0 and ny < m:
-                if -1 <= board[nx][ny] <= 5:
-                    if board[nx][ny] == 0:
-                        board[nx][ny] = -1
-                    queue.append((nx, ny, direc))
+        # while queue:
+        #     cx, cy, direc = queue.popleft()
+
+        #     nx = cx + dx[direc]
+        #     ny = cy + dy[direc]
+
+        #     if nx >= 0 and nx < n and ny >= 0 and ny < m:
+        #         if -1 <= board[nx][ny] <= 5:
+        #             if board[nx][ny] == 0:
+        #                 board[nx][ny] = -1
+        #             queue.append((nx, ny, direc))
         
         dfs(board, index + 1)
         board = copy.deepcopy(pre_board)
