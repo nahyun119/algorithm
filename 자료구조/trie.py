@@ -25,7 +25,7 @@ class Trie(object):
             else:
                 return False # 문자열이 없으므로 
 
-        if current.data != None: # 데이터가 빈 경우 데이터가 있어야 해당 문자열이 trie에 있다는 의미이므로 
+        if current.data != None: # 데이터가 빈 경d우 데이터가 있어야 해당 문자열이 trie에 있다는 의미이므로 
             return True 
         
         return False 
