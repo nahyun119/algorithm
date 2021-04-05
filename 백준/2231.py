@@ -1,32 +1,14 @@
 import sys
+input = sys.stdin.readline 
 
-def check(N, num):
-    if num >= N:
+n = int(input())
+
+for i in range(n + 1):
+    result = i + sum(list(map(int, str(i))))
+    # print(result)
+    if result == n:
+        print(i)
+        break 
+
+    if i == n: # 마지막까지 온 경우 
         print(0)
-        return
-
-    d, q = divmod(num, 10)
-    sum = q
-    while d >= 10: # 나머지가 10일 때까지 
-        d, q = divmod(d, 10)
-        #print(d, q)
-        sum += q
-    sum += d
-
-    if sum + num == N:
-        print(num)
-        return 
-        
-    check(N, num + 1)
-
-def main():
-    sys.setrecursionlimit(10**6)
-    N = int(input())
-
-    check(N, 0)
-
-    #print(number)
-
-
-if __name__ ==  "__main__":
-    main()
