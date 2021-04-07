@@ -13,7 +13,7 @@ distance = [INF for _ in range(MAX_NUM + 1)] # 최대 10만
 q = []
 heapq.heappush(q, (0, n))
  
-distance[n] = 0
+distance[n] = 0 # 맨 처음 꼭 초기화
 
 while q:
     dis, number = heapq.heappop(q)
