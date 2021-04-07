@@ -1,43 +1,42 @@
-import sys
-from collections import deque
-input = sys.stdin.readline
+import sys 
+from collections import deque 
+input = sys.stdin.readline 
+n, m = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
 
-def bfs(x, graph, n):
+for i in range(m):
+    a, b = map(int, input().split())
+    graph[b].append(a)
+
+def bfs(node):
     q = deque()
-    q.append(x)
+    count = 1
     visited = [0] * (n + 1)
-    dist = 0
+    visited[node] = 1
+
+    q.append(node)
     while q:
-        cx = q.popleft()
-        dist += 1
-        for g in graph[cx]:
-            if visited[g] == 0:
-                q.append(g)
-                visited[g] = 1
-    return dist
-    
+        v = q.popleft()
+        count += 1 # 몇개의 노드를 해킹할 수 있는지 
+        for i in graph[v]:
+            if visited[i] == 0:
+                visited[i] = 1
+                q.append(i) 
 
-def main():
-    n, m = map(int, input().split())
-    graph = [[] for _ in range(n + 1)]
+    return count 
 
-    for _ in range(m):
-        a, b = map(int, input().split())
-        graph[b].append(a)
+max_value = -1
+max_result = []
 
-    max_value = 0
-    result = []
-    for i in range(1, n + 1):
-        value = bfs(i, graph, n)
-        if value > max_value:
-            max_value = value
-            result = []
-            result.append(i)
-        elif value == max_value:
-            result.append(i)
-    
-    print(*result)
-    
+for i in range(1, n + 1):
+    # print(graph[i])
+    if len(graph[i]) > 0:
+        result = bfs(i)
+        # print(result)
+        if max_value < result:
+            max_result = [i]
+            max_value = result 
+        elif max_value == result:
+            max_result.append(i)
 
-if __name__ ==  "__main__":
-    main()
+print(*max_result)
