@@ -64,17 +64,11 @@ for i in range(k):
             ## 겨울 
             board[x][y] += food[x][y] # 양분 추가 
 
-
-
-    # print("##########나무 정보##########")
-    # print(tree)
-    # print(board)
-
 for x in range(n):
     for y in range(n):
         if tree[x][y]: 
             alive_tree += len(tree[x][y]) # 살아있는 나무 정보 추가 
-            
+
 print(alive_tree)
                          
 

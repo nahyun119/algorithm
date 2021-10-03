@@ -9,7 +9,7 @@ for i in range(n):
     # max_value = max(max_value, max(temp))
     board.append(temp)
 
-max_value = max(map(max, board))
+max_value = max(map(max, board)) # -> max값 계산하는 부분에서 메모리초과 발생 후에 max값 계산한다면 이런 방식으로 진행
 
 answer = 0
 visited = [[0] * m for _ in range(n)]
